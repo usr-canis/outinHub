@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='dash.css') }}">
+  <title>OutinHub - Dashboard</title>
+</head>
+
+<body>
+  <header>
+    <div class="header-content">
+      <h1>OutinHub</h1>
+    </div>
+  </header>
+  <div class="container">
+    <div class="content">
+      <div class="text">
+        <h2>Welcome, {{ username }}!</h2>
+        <p>Good to see you again sup? what's your plan ?</p>
+      </div>
+      <div class="buttons">
+        <a href="NULL" class="button">Add Activity</a>
+        <a href="NULL" class="button">Explore Activities</a>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

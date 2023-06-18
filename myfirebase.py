@@ -24,6 +24,7 @@ cred = credentials.Certificate({ "type": "service_account",
 
 firebase_admin.initialize_app(cred)
 
+
 # Firebase authentication
 def create_user(email, password, display_name):
     user = auth.create_user(
