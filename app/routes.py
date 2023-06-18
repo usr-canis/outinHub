@@ -1,6 +1,12 @@
-from flask import render_template, request, redirect, session
+import firebase_admin
+from flask import Flask, render_template, redirect, url_for, request, flash,session
 from app import app
+from myfirebase import create_user,sign_in_with_email_and_password
 from myfirebase import auth
+import requests
+
+FIREBASE_AUTH_URL = "https://www.googleapis.com/identitytoolkit/v3/relyingparty/"
+
 
 @app.route('/')
 def index():
@@ -30,7 +36,7 @@ def signup():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    # Login logic here
+
     return render_template('login.html')
 
 @app.route('/profile')
