@@ -29,7 +29,7 @@ def signup():
             # User created successfully, redirect to the login page
             return redirect('/login')
 
-        except auth.EmailAlreadyExistsError:
+        except:
             error = 'Email address already exists.'
             return render_template('signup.html', error=error)
 
@@ -66,4 +66,8 @@ def dashboard():
         return render_template('dash.html', username=username)
      else:
         # User is not logged in, redirect to the login page
-        return redirect('/login')   
+        return redirect('/login')
+
+@app.route('/explore')
+def explore():
+    return render_template('explore.html')

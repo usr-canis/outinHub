@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Feed with OpenLayers Map</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='explore.css') }}">
+  <link rel="stylesheet" href="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v6.5.0/css/ol.css">
+  <script src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v6.5.0/build/ol.js"></script>
+  <script src="script.js"></script>
+</head>
+
+<body>
+  <header>
+    <div class="header-content">
+      <h1>outinHub</h1>
+    </div>
+  </header>
+  <div id="feed">
+    <div class="post">
+      <div id="map1" class="map"></div>
+      <div class="info">
+        <h2>linus torvalds </h2>
+        <p>Hiking activity at 10:00 AM , tomorrow</p>
+      </div>
+      <div class="buttons">
+        <button>Join</button>
+        <button>Reach out</button>
+      </div>
+    </div>
+    <div class="post">
+      <div id="map2" class="map"></div>
+      <div class="info">
+        <h2>stephen sanchez</h2>
+        <p>Trekking activity at 14:00 PM , tuesday</p>
+      </div>
+      <div class="buttons">
+        <button>Join</button>
+        <button>Reach out</button>
+      </div>
+    </div>
+    <div class="post">
+      <div id="map3" class="map"></div>
+      <div class="info">
+        <h2>abel tesfaye</h2>
+        <p>Hiking activity at 11:30 AM , wednesday</p>
+      </div>
+      <div class="buttons">
+        <button>Join</button>
+        <button>Reach out</button>
+      </div>
+    </div>
+    <div class="post">
+      <div id="map4" class="map"></div>
+      <div class="info">
+        <h2>Paul allen</h2>
+        <p>Trekking activity at 16:00 PM , saturday</p>
+      </div>
+      <div class="buttons">
+        <button>Join</button>
+        <button>Reach out</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Initialize the maps
+    var map1 = new ol.Map({
+      target: 'map1',
+      layers: [
+        new ol.layer.Tile({
+          source: new ol.source.OSM()
+        })
+      ],
+      view: new ol.View({
+        center: ol.proj.fromLonLat([-122.4194, 37.7749]), // San Francisco
+        zoom: 14
+      })
+    });
+
+    var map2 = new ol.Map({
+      target: 'map2',
+      layers: [
+        new ol.layer.Tile({
+          source: new ol.source.OSM()
+        })
+      ],
+      view: new ol.View({
+        center: ol.proj.fromLonLat([-74.0059, 40.7128]), // New York
+        zoom: 14
+      })
+    });
+
+    var map3 = new ol.Map({
+      target: 'map3',
+      layers: [
+        new ol.layer.Tile({
+          source: new ol.source.OSM()
+        })
+      ],
+      view: new ol.View({
+        center: ol.proj.fromLonLat([-0.1276, 51.5074]), // London
+        zoom: 14
+      })
+    });
+
+    var map4 = new ol.Map({
+      target: 'map4',
+      layers: [
+        new ol.layer.Tile({
+          source: new ol.source.OSM()
+        })
+      ],
+      view: new ol.View({
+        center: ol.proj.fromLonLat([139.6917, 35.6895]), // Tokyo
+        zoom: 14
+      })
+    });
+
+    // Function to add a marker to the map
+    function addMarker(map, lon, lat) {
+      var marker = new ol.Feature({
+        geometry: new ol.geom.Point(ol.proj.fromLonLat([lon, lat]))
+      });
+
+      var markerStyle = new ol.style.Style({
+        image: new ol.style.Icon({
+          src: 'pin.png',
+          scale: 0.05
+        })
+      });
+
+      marker.setStyle(markerStyle);
+
+      var vectorSource = new ol.source.Vector({
+        features: [marker]
+      });
+
+      var vectorLayer = new ol.layer.Vector({
+        source: vectorSource
+      });
+
+      map.addLayer(vectorLayer);
+    }
+
+    // Add markers to the maps
+    addMarker(map1, -122.4194, 37.7749); // San Francisco
+    addMarker(map2, -74.0059, 40.7128); // New York
+    addMarker(map3, -0.1276, 51.5074); // London
+    addMarker(map4, 139.6917, 35.6895); // Tokyo
+  </script>
+</body>
+
+</html>
